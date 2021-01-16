@@ -5,6 +5,10 @@
  */
 package patrones;
 
+import patrones.creacionales.abstractFactory.FactoryProductor;
+import patrones.creacionales.abstractFactory.factoryInter.IFactories;
+import patrones.creacionales.abstractFactory.inter.IColor;
+import patrones.creacionales.abstractFactory.inter.IShape;
 import patrones.creacionales.factory.ConnectionFactory;
 import patrones.creacionales.factory.inter.IConnection;
 import patrones.creacionales.singleton.Singleton;
@@ -37,6 +41,15 @@ public class Patrones {
         IConnection postgres = factory.getConnection("POSTGRE");
         System.out.println(postgres.connect());
         System.out.println(postgres.disconnect());
+        
+        //Abstract Factory
+        IFactories shapeFactory = FactoryProductor.getFactory("Shape");
+        IShape circle = shapeFactory.getShape("Circle");
+        
+        IFactories colorFactory = FactoryProductor.getFactory("Color");
+        IColor colorGreen = colorFactory.getColor("Green");
+        
+        System.out.println(circle.buildShape()+" and "+colorGreen.assignColor());
         
     }
     
